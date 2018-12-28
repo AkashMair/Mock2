@@ -1,0 +1,52 @@
+<form #homeForm="ngForm" (ngSubmit)="upload(homeForm.value)">
+  <input 
+    type="text"
+    name="date"
+    placeholder="Date"
+    ngModel>
+
+  <input 
+    type="text"
+    ngModel
+    name="title"
+    placeholder="Title">
+
+  <input 
+    type="text"
+    ngModel
+    name="description"
+    placeholder="Description"
+    >
+
+  <input type="number"
+    name="rating"
+    ngModel
+    placeholder="Rating">
+
+    <button type="submit">Submit</button>
+</form>
+
+<div *ngFor="let item of nologyDetails | async">
+  <ul>
+    <li>
+      {{item.date}}
+      {{item.title}}
+      {{item.description}}
+      {{item.rating}}
+      <button (click)="delete(item)">Delete</button>
+    </li>
+  </ul>
+  <form #updateForm="ngForm" (ngSubmit)="update(item)">
+    <ul>
+        <li><input name="date" [(ngModel)]="item.date"></li>
+        <li><input name="title" [(ngModel)]="item.title"></li>
+        <li><input name="description" [(ngModel)]="item.description"></li>
+        <li><input name="rating" [(ngModel)]="item.rating"></li>
+    </ul>
+    <button type="submit">Update</button>
+  </form>
+</div>
+
+
+
+<button (click)="logout()">Log Out</button>
